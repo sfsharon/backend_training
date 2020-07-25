@@ -6,6 +6,16 @@
 3. [Book list](#BooksList)
 
 ### ProgressTable
+|No.|Topic|Date and time|Progress|
+|---|-----|-------------|--------|
+|   |     |             |        |
+| 1.|Pick a Language - Javascript, Rust    |             |        |
+| 2.  |Practice what you learnt - Make some command line application with picked language    |             |        |
+| 3.  | Learn Package Manager     |             |        |
+| 4.  | Standards and Best Practices. Read OWASP guidelines and understand different security issues    |             |        |
+| 5.  |     |             |        |
+| 6.  |     |             |        |
+| 7.  |     |             |        |
 
 ### TrainingDiagram
 <p align="center">
