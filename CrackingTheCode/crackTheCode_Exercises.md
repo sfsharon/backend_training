@@ -104,3 +104,9 @@ Sol. : Taking iterative solution from [Wikipedia link](https://en.wikipedia.org/
         else :
             return self.dequeueStack.pop()        
   ```
+  
+  
+  
+# Chapter 4 - Trees and Graphs
+
+## 4.3 (p. 60) Given a sorted (increasing order)array, write an algorithm to create a binary tree with minimal height
