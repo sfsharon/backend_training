@@ -53,10 +53,12 @@ Sol. : Taking iterative solution from [Wikipedia link](https://en.wikipedia.org/
     """
       def __init__(self) :
         self.stack = []
-      def enqueue(self, val) :
+      def push(self, val) :
         self.stack.append(val)
-      def dequeue(self) :
+      def pop(self) :
         return self.stack.pop()
+      def isEmpty(self) :
+        return (len(self.stack) == 0)
   
   # --------------------------------------------
   # Main class
@@ -73,4 +75,32 @@ Sol. : Taking iterative solution from [Wikipedia link](https://en.wikipedia.org/
         self.dequeueStack = myStack()
         # The Queue is initialized empty, therefore the initial state can only be enqueue
         self.state = self.ENQUEUE_STATE
+  
+    def enqueue(self, val) :
+        # Simple case - Queue is in Enqueue mode, so just push value onto the enqueueStack
+        if self.state == self.ENQUEUE_STATE :
+            continue # Do nothing to change the inner object state
+        # Need to move all content from dequeueStack to the enqueueStack, and then push
+        # to the enqueueStack
+        elif self.state == self.DEQUEUE_STATE :
+            self.state = self.ENQUEUE_STATE
+            self.move_from_dequeue_to_enqueue() # Not implemented here
+  
+        # Enqueue value onto the enqueueStack
+        self.enqueueStack.push(val)
+  
+    def dequeue(self) :
+        # Simple case - Queue is in Dequeue mode
+        if self.state == self.DEQUEUE_STATE :
+            continue # Do nothing to change the inner object state
+        # Need to move all content from enqueueStack to the dequeueStack
+        elif self.state == self.ENQUEUE_STATE :
+            self.state = self.DEQUEUE_STATE
+            self.move_from_enqueue_to_dequeue() # Not implemented here
+  
+        # Dequeue value onto the dequeueStack, and return it to the user
+        if (self.dequeueStack.isEmpty() == True) :
+            raise ValueError("*** Error - Trying the dequeue an empty queue")
+        else :
+            return self.dequeueStack.pop()        
   ```
