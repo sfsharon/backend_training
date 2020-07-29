@@ -104,9 +104,39 @@ Sol. : Taking iterative solution from [Wikipedia link](https://en.wikipedia.org/
         else :
             return self.dequeueStack.pop()        
   ```
-  
-  
-  
+
 # Chapter 4 - Trees and Graphs
 
-## 4.3 (p. 60) Given a sorted (increasing order)array, write an algorithm to create a binary tree with minimal height
+## 4.3 (p. 60) Given a sorted (increasing order) array, write an algorithm to create a binary tree with minimal height.
+
+Sol. :
+The question says "binary tree", and NOT "binary search tree", so the tree does not have to hold the search tree rule of left subtree smaller then root, and right tree larger. So why does it matter that the input array is ordered ? It doesn't make sense.
+So the main issue here is to traverse the input array, no matter in what order the elements are.
+It looks like a BFS implementation could be done here, using a queue. The first element in the array will be the root tree node.
+Then the children elements will be inserted into the queue. 
+Number of elements at each level should be 2<sup>level</sup>, unless it's the final level. This will ensure a minimal height tree.
+Maybe a queue is not a good idea. If I keep two indices into the array. One (parentIdx) points to the current parent node that is being populated with children, and another (currChildIdx) to the next available node intended to be a child.
+For example :
+
+```
+Ex. 1 : array [1,2,3] :
+                1
+              /   \
+            2      3
+           / \    /  \               
+         Nil Nil Nil Nil
+         
+Ex. 2 : array [1,2,3,4,5,6,7]
+                1
+       /                \
+      2                  3
+     /   \            /     \              
+    4       5         6      7            
+  /  \     /  \     /   \   /  \
+ Nil Nil  Nil Nil Nil  Nil Nil  Nil
+```
+
+**Example 2**
+Step 0
+parentIdx    : 0
+currChildIdx : 1
