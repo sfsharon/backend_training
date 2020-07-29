@@ -134,10 +134,15 @@ Ex. 2 : array [1,2,3,4,5,6,7]
     4       5         6      7            
   /  \     /  \     /   \   /  \
  Nil Nil  Nil Nil Nil  Nil Nil  Nil
+
+Init 
+root = new_node(array[0])
+parentIdx    : 0
+currChildIdx : 1 
+level = 1
+ 
+Step 0
+
+
 ```
 
-**Example 2**
-
-Step 0
-parentIdx    : 0
-currChildIdx : 1
