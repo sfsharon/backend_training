@@ -125,7 +125,7 @@ Ex. 1 : array [1,2,3] :
             2      3
            / \    /  \               
          Nil Nil Nil Nil
-         
+
 Ex. 2 : array [1,2,3,4,5,6,7]
                 1
        /                \
@@ -137,6 +137,7 @@ Ex. 2 : array [1,2,3,4,5,6,7]
 ```
 
 **Example 2**
+
 Step 0
 parentIdx    : 0
 currChildIdx : 1
