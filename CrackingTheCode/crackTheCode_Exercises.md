@@ -137,12 +137,21 @@ Ex. 2 : array [1,2,3,4,5,6,7]
 
 Init 
 root = new_node(array[0])
-parentIdx    : 0
+enqueue(Array[1])
 currChildIdx : 1 
 level = 1
- 
+
 Step 0
+If queue is empty then break
+root = dequeue()                        # root = array[0]
+childLeft  = array[currChildIdx]        # currChildIdx     = 1
+childRight = array[currChildIdx + 1]    # currChildIdx + 1 = 2
+root_connect(childLeft, childRight)     # build subtree
 
+enqueue (currChildIdx)          # array[1]
+enqueue(currChildIdx + 1)       # array[2]
+currChildIdx = currChildIdx + 2 # Index points to the next nodes to be added to tree,
+                                # meaning array[3]
 
+Step 1 
 ```
-
