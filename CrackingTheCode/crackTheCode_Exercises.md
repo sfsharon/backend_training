@@ -187,6 +187,8 @@ BFS Algorithm (from [wikipedia](https://en.wikipedia.org/wiki/Breadth-first_sear
 3. Added a level attribute to each node discovered, which is larger by one from its parent. 
    All nodes are gathered to a set data structure, and at the end of the tree traversal we go over all the nodes in the set,   and create linked list for each level.
 
+# NEED TO OPTIMISE SOLUTION (USE BINARY SEARCH TREE) !!!
+
 ```
     procedure BFS (G, root) is  
     let Q be queue
