@@ -191,15 +191,15 @@ BFS Algorithm (from [wikipedia](https://en.wikipedia.org/wiki/Breadth-first_sear
 
 ```
     procedure BFS (G, root) is  
-    let Q be queue
-    let S be set      # Set data structure, to hold all the tree nodes, for later processing
-    root.height = 0   # Root node is at height 0 in the tree graph
-    Q.enqueue(root)
-    while Q is not empty do
-       v := Q.dequeue()
-       for all edges from v to w in G.adjacentEdges(v) do
-           w.height = v.height + 1 # Set child height to be larger by one from its parent
-           Q.enqueue(w)
+        let Q be queue
+        let S be set      # Set data structure, to hold all the tree nodes, for later processing
+        root.height = 0   # Root node is at height 0 in the tree graph
+        Q.enqueue(root)
+        while Q is not empty do
+           v := Q.dequeue()
+           for all edges from v to w in G.adjacentEdges(v) do
+               w.height = v.height + 1 # Set child height to be larger by one from its parent
+               Q.enqueue(w)
 
     procedure PostProcess (S) is
         for i in tree_height do
