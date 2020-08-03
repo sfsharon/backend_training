@@ -136,24 +136,27 @@ Ex. 2 : array [0,1,2,3,4,5,6]
  Nil Nil  Nil Nil Nil  Nil Nil  Nil
 
 Init 
+----------
 root = new_node(array[0])
 enqueue(Array[1])
 currChildIdx : 1 
 level = 1
 
 Step 0
+----------
 Loop : while queue is not empty                 # Queue has one node : array[0]
         root = dequeue()                        # root = array[0]
         childLeft  = array[currChildIdx]        # currChildIdx     -> 1
         childRight = array[currChildIdx + 1]    # currChildIdx + 1 -> 2
         root_connect(childLeft, childRight)     # build subtree
-    
+
         enqueue (currChildIdx)                  # array[1]
         enqueue(currChildIdx + 1)               # array[2]
         currChildIdx = currChildIdx + 2         # Index points to the next nodes to be added to tree,
                                                 # meaning array[3]
 
 Step 1
+----------
 Loop : while queue is not empty                 # Queue has two nodes : array[1], array[2]
         # First iteration, for node array[1]. Second will be for array[2]
         root = dequeue()                        # root = array[1]
@@ -165,5 +168,39 @@ Loop : while queue is not empty                 # Queue has two nodes : array[1]
         enqueue(currChildIdx + 1)       # array[4]
         currChildIdx = currChildIdx + 2 # Index points to the next nodes to be added to tree,
                                         # meaning array[3]
- 
+```
+
+## 4.4 (p. 60) Given a binary search tree, design an algorithm which creates a linked list of all the nodes at each depth (i.e., if you have a tree with depth D, you will have D linked lists)
+
+Sol. : It seems like the algorithm from previous question, 4.3, could be employed here also. Using the queue data structure, implementing a kind of BFS  tree traversal, I can build the linked list at any height.
+Each node will be marked with its tree height, and added to a set data structure. After the tree traversal is finished, pos processing will take place : Iterating over the set which holds all the nodes, linked lists will be built for all nodes with the same value of height. 
+Problem with this brute force solution : It does not use the fact that the tree is binary search tree. Therefore there is probably a more efficient solution, both in time and space.
+
+BFS Algorithm (from [wikipedia](https://en.wikipedia.org/wiki/Breadth-first_search) ):
+(modified version :
+
+1. No need to check if we reached the goal node. We want to traverse the entire tree.
+
+2. No need to label each node, because I assume that there are no cycles in the tree graph. 
+   Each new node the algorith reaches, assume that it is a new one.
+
+3. Added a level attribute to each node discovered, which is larger by one from its parent. 
+   All nodes are gathered to a set data structure, and at the end of the tree traversal we go over all the nodes in the set,   and create linked list for each level.
+
+```
+    procedure BFS (G, root) is  
+    let Q be queue
+    let S be set      # Set data structure, to hold all the tree nodes, for later processing
+    root.height = 0   # Root node is at height 0 in the tree graph
+    Q.enqueue(root)
+    while Q is not empty do
+       v := Q.dequeue()
+       for all edges from v to w in G.adjacentEdges(v) do
+           w.height = v.height + 1 # Set child height to be larger by one from its parent
+           Q.enqueue(w)
+
+    procedure PostProcess (S) is
+        for i in tree_height do
+            get all nodes with height idea
+            link them together
 ```
