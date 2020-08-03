@@ -126,12 +126,12 @@ Ex. 1 : array [1,2,3] :
            / \    /  \               
          Nil Nil Nil Nil
 
-Ex. 2 : array [1,2,3,4,5,6,7]
-                1
+Ex. 2 : array [0,1,2,3,4,5,6]
+                0
        /                \
-      2                  3
+      1                  2
      /   \            /     \              
-    4       5         6      7            
+    3       4         5      6            
   /  \     /  \     /   \   /  \
  Nil Nil  Nil Nil Nil  Nil Nil  Nil
 
@@ -142,16 +142,28 @@ currChildIdx : 1
 level = 1
 
 Step 0
-If queue is empty then break
-root = dequeue()                        # root = array[0]
-childLeft  = array[currChildIdx]        # currChildIdx     = 1
-childRight = array[currChildIdx + 1]    # currChildIdx + 1 = 2
-root_connect(childLeft, childRight)     # build subtree
+Loop : while queue is not empty                 # Queue has one node : array[0]
+        root = dequeue()                        # root = array[0]
+        childLeft  = array[currChildIdx]        # currChildIdx     -> 1
+        childRight = array[currChildIdx + 1]    # currChildIdx + 1 -> 2
+        root_connect(childLeft, childRight)     # build subtree
+    
+        enqueue (currChildIdx)                  # array[1]
+        enqueue(currChildIdx + 1)               # array[2]
+        currChildIdx = currChildIdx + 2         # Index points to the next nodes to be added to tree,
+                                                # meaning array[3]
 
-enqueue (currChildIdx)          # array[1]
-enqueue(currChildIdx + 1)       # array[2]
-currChildIdx = currChildIdx + 2 # Index points to the next nodes to be added to tree,
-                                # meaning array[3]
+Step 1
+Loop : while queue is not empty                 # Queue has two nodes : array[1], array[2]
+        # First iteration, for node array[1]. Second will be for array[2]
+        root = dequeue()                        # root = array[1]
+        childLeft  = array[currChildIdx]        # currChildIdx     -> 3
+        childRight = array[currChildIdx + 1]    # currChildIdx + 1 -> 4
+        root_connect(childLeft, childRight)     # build subtree
 
-Step 1 
+        enqueue (currChildIdx)          # array[3]
+        enqueue(currChildIdx + 1)       # array[4]
+        currChildIdx = currChildIdx + 2 # Index points to the next nodes to be added to tree,
+                                        # meaning array[3]
+ 
 ```
