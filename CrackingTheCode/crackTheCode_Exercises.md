@@ -206,3 +206,81 @@ BFS Algorithm (from [wikipedia](https://en.wikipedia.org/wiki/Breadth-first_sear
             get all nodes with height idea
             link them together
 ```
+
+# Chapter 5 - Bit Manipulation
+
+## 5.3 (p. 64) Given an integer, print the next smallest and next largest number that have the same number of '1' bits in their binary representation.
+
+Sol. 
+Let's start with an example, and see if there is some insight.
+For example, the number 6 : 0b110 . We have two ones. Finding the next largest. This exercise is actually adding zeros in different places in the number.adding zero at the front does not change anything, so it doesn't matter, only in the middle or at the end of the number. Adding zero at the end of the number is equivalent to left shift by one place, which means multiplying by 2 the value of the number. So for 6, adding a zero at the end is 0b1100, which value is 12. If a zero is added in the middle, we get 0b1010, which is 10, that is closer to 6 then 12, so it is better. The value 7 has three '1's, the value 8 has one '1', so they do not match. the value 9 has two '1's : 0b1001, so it is a better fit, and looks like it is the next largest number with the same number of '1's. Looking the other way for the next smallest, 5 has two '1's : 0b101, so it is the best fit. 
+Second example, the number 7. It has three '1's : 0b111. The number 8, 9, 10 have the wrong '1's, but 11 has three '1's : 0b1011, so it fits. The next smallest number is negative, because no positive number smaller then 7 has three '1's.
+Cannot see any insight or a method for inserting the zeros, so going to the brute force approach : Searching iteratively for the next smallest and next largest.
+
+```python
+def find_neighbor_num (val) :
+    """
+    Find the next smallest and largest neighbor for a positive integer input value.
+    A neighbor is a number with the same number of '1's as the input val number
+    """
+
+    valNumOnes = count_ones(val)
+
+    # Corner cases : 1. If val is zero, there are no neighbors.
+    #                2. Do not support negative numbers (need to implement twos complement)
+    if val <= 0 :
+        print ("find_neighbor_num :  error in value " + str(val)) 
+        return ("null", "null")
+
+    nextLargest  = val + 1
+    nextSmallest = val -1
+
+    # Find next largest neighbor
+    while count_ones(nextLargest) != valNumOnes :
+        nextLargest += 1
+
+    # Find next smallest neighbor
+    while count_ones(nextSmallest) != valNumOnes :
+        if nextSmallest == 0 :
+            print ("find_neighbor_num :  Could not find next smallest neighbor for value " + str(val)) 
+            nextSmallest = "null"
+            break
+
+        nextSmallest -= 1
+
+
+
+    return (nextLargest, nextSmallest)
+
+def count_ones  (val) :
+    """
+    Calculate the number of '1's in an integer positive value
+    """
+
+    numOfOnes = 0
+
+    while val != 0 :
+        #print(val)
+        numOfOnes += val & 0x1
+        val = val >> 1
+
+    return numOfOnes
+
+
+if __name__ == "__main__" :
+    val = 6
+    print ("For value " + str(val) + " neighbors : ")
+    print(find_neighbor_num(val))
+
+    val = 7
+    print ("For value " + str(val) + " neighbors : ")
+    print(find_neighbor_num(val))
+
+    val = 1
+    print ("For value " + str(val) + " neighbors : ")
+    print(find_neighbor_num(val))
+
+    val = 0
+    print ("For value " + str(val) + " neighbors : ")
+    print(find_neighbor_num(val))
+```
