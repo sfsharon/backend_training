@@ -298,7 +298,6 @@ Sol. : Let's take a couple of examples, which are not 2's exponent (because if n
 
 Therefore, it looks like the arithmetic expressions returns a boolean value: True if n is a 2's exponent value, False otherwise.
 
-
 # Chapter 6 - Brain Teasers
 
 ## 6.3 (p. 66) You have a five quart jug and a three quart jug, and an unlimited supply of water (but no measuring cups). How would you come up with exactly four quarts of water ? NOTE: The jugs are oddly shaped, such that filling up exactly 'half' of the jug would be impossible.
