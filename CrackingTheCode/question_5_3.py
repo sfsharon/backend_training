@@ -9,13 +9,13 @@ def find_neighbor_num (val) :
     A neighbor is a number with the same number of '1's as the input val number
     """
 
-    valNumOnes = count_ones(val)
-
     # Corner cases : 1. If val is zero, there are no neighbors.
     #                2. Do not support negative numbers (need to implement twos complement)
     if val <= 0 :
         print ("find_neighbor_num :  error in value " + str(val)) 
         return ("null", "null")
+
+    valNumOnes = count_ones(val)
 
     nextLargest  = val + 1
     nextSmallest = val -1
@@ -53,19 +53,19 @@ def count_ones  (val) :
     
     
 if __name__ == "__main__" :
-    val = 6
+    val = 10
     print ("For value " + str(val) + " neighbors : ")
     print(find_neighbor_num(val))
     
-    val = 7
+    val = 100
     print ("For value " + str(val) + " neighbors : ")
     print(find_neighbor_num(val))
     
-    val = 1
+    val = 1984
     print ("For value " + str(val) + " neighbors : ")
     print(find_neighbor_num(val))
     
-    val = 0
+    val = -3
     print ("For value " + str(val) + " neighbors : ")
     print(find_neighbor_num(val))
     
