@@ -266,23 +266,34 @@ def count_ones  (val) :
         val = val >> 1
 
     return numOfOnes
-    
-    
+
+
 if __name__ == "__main__" :
     # Testing
     val = 10
     print ("For value " + str(val) + " neighbors : ")
     print(find_neighbor_num(val))
-    
+
     val = 100
     print ("For value " + str(val) + " neighbors : ")
     print(find_neighbor_num(val))
-    
+
     val = 1984
     print ("For value " + str(val) + " neighbors : ")
     print(find_neighbor_num(val))
-    
+
     val = -3
     print ("For value " + str(val) + " neighbors : ")
     print(find_neighbor_num(val))        
 ```
+
+## 5.4 (p. 64) Explain what the following code does: ((n & (n - 1)) == 0)
+
+Sol. : Let's take a couple of examples, which are not 2's exponent (because if n is 2's exponent, n-1 will yield an all 1's number, with number of bits less by one from the original n value) :
+
+```
+# Ex. 1 : n = 6  => (6 & (6 - 1)) = 6 & 5 = 0b110  & 0b101   = 0b100 => ((6 & (6 - 1)) == 0) = False
+# Ex. 2 : n = 8  => (8 & (8 - 1)) = 8 & 7 = 0b1000 & 0b0111 = 0b0000 => ((8 & (8 - 1)) == 0) = True
+```
+
+Therefore, it looks like the arithmetic expressions returns a boolean value: True if n is a 2's exponent value, False otherwise.
