@@ -303,16 +303,17 @@ Therefore, it looks like the arithmetic expressions returns a boolean value: Tru
 ## 6.3 (p. 66) You have a five quart jug and a three quart jug, and an unlimited supply of water (but no measuring cups). How would you come up with exactly four quarts of water ? NOTE: The jugs are oddly shaped, such that filling up exactly 'half' of the jug would be impossible.
 
 Sol. : This is an exercise in building an arithmetic expression, which it's components are made up only of the values five and three, and the end result should be four.
-Let's see : 1. Fill the five cup 
-            *Status : Five has 5, Three has 0.*
-            2. Pour from Five to three
-            *Status : Five has 2, Three has 3.*
-            2. Empty the three cup.
-            *Status : Five has 2, Three has 0.*
-            3. Pour five to three.
-            *Status : Five has 0, Three has 2.*
-            4. Fill five.
-            *Status : Five has 5, Three has 2.*
-            5. Pour five to three, up until the point three is full.
-            *Status : Five has 4, Three has 3.*
+Let's see : 
+1. Fill the five cup 
+*Status : Five has 5, Three has 0.*
+2. Pour from Five to three
+*Status : Five has 2, Three has 3.*
+3. Empty the three cup.
+*Status : Five has 2, Three has 0.*
+4. Pour five to three.
+*Status : Five has 0, Three has 2.*
+5. Fill five.
+*Status : Five has 5, Three has 2.*
+6. Pour five to three, up until the point three is full.
+*Status : Five has 4, Three has 3.*
 **Cup five now holds exactly 4 quarts, as requested**.
