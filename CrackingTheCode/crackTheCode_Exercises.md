@@ -304,16 +304,52 @@ Therefore, it looks like the arithmetic expressions returns a boolean value: Tru
 
 Sol. : This is an exercise in building an arithmetic expression, which it's components are made up only of the values five and three, and the end result should be four.
 Let's see : 
+
 1. Fill the five cup 
-*Status : Five has 5, Three has 0.*
+   *Status : Five has 5, Three has 0.*
 2. Pour from Five to three
-*Status : Five has 2, Three has 3.*
+   *Status : Five has 2, Three has 3.*
 3. Empty the three cup.
-*Status : Five has 2, Three has 0.*
+   *Status : Five has 2, Three has 0.*
 4. Pour five to three.
-*Status : Five has 0, Three has 2.*
+   *Status : Five has 0, Three has 2.*
 5. Fill five.
-*Status : Five has 5, Three has 2.*
+   *Status : Five has 5, Three has 2.*
 6. Pour five to three, up until the point three is full.
-*Status : Five has 4, Three has 3.*
-**Cup five now holds exactly 4 quarts, as requested**.
+   *Status : Five has 4, Three has 3.*
+   **Cup five now holds exactly 4 quarts, as requested**.
+
+# Chapter 18 - Threads and Locks
+
+## 18.3 (p. 86) Implement a singleton design pattern as a template such that, for any given class Foo, you can call Singleton::instance() and get a pointer to an instance of type Foo. Assume the existence of a class Lock, which has acquire() and release() methods. How can you make sure your implementation is thread safe and exception safe ?
+
+Sol. : Looking at [S.O.](https://codereview.stackexchange.com/questions/173929/modern-c-singleton-template) :
+
+```cpp
+template < typename T >
+class Singleton {
+    public:
+        static T& GetInstance() {
+            // thread mutex lock
+            if (!m_instance) { // If this is the first time code is called
+                m_instace = new T();
+            }
+            // thread mutex free
+            return *m_instance;
+        }
+
+        // Remove copy constructor
+        Singleton(const Singleton&) = delete;
+        // Remove copy assignment
+        Singleton& operator= (const Singleton) = delete;
+
+    private:
+        Singleton() { };
+
+        inline static T* m_instance = nullptr;
+
+};       
+```
+
+* Add class Lock Usage
+* Add testing
