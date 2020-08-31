@@ -329,12 +329,16 @@ Sol. : Looking at [S.O.](https://codereview.stackexchange.com/questions/173929/m
 template < typename T >
 class Singleton {
     public:
-        static T& GetInstance() {
+        static T& instance() {
             // thread mutex lock
+            m_lock.acquire()
+            
             if (!m_instance) { // If this is the first time code is called
                 m_instace = new T();
             }
             // thread mutex free
+            m_lock.release();
+            
             return *m_instance;
         }
 
@@ -347,8 +351,10 @@ class Singleton {
         Singleton() { };
 
         inline static T* m_instance = nullptr;
-
-};       
+        
+        Lock m_lock;
+        
+};        
 ```
 
 * Add class Lock Usage
