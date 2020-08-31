@@ -1,5 +1,7 @@
 # SQream online test
 
+(Ofer from ofers@sqreamtech.com)
+
 * [SQream - Question bank](http://www.questions-bank.com)
 
 ## The purpose of this exercise is to compress an array of Integers.
