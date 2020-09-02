@@ -1,6 +1,6 @@
 # IBM online test
 
-* [IBM - HackerRank](https://www.hackerrank.com/)
+Taken from: [IBM - HackerRank](https://www.hackerrank.com/)
 
 ## 12. Minimum Sum
 
@@ -53,3 +53,31 @@ The following four arrays are valid custom-sorted arrays :
 * *a = [4,6,5,3]*
 
 The most efficient sorting requires 1 move: swap the 4 and the 3.
+
+**Function Description**
+COmplete the function *moves* in the editor below.
+
+moves has the following parameter(s): *int arr[n]:* an array of positive integers
+
+**Returns**
+    *int:* the minimum number of moves it takes to sort an array of integers with all even elements at earlier indices than any odd element.
+
+**Note:** The order of the elements within even or odd does not matter.
+
+** Sample Input 
+
+STDIN       Function
+
+-----       --------
+
+4       -> arr[] size n = 4
+13      -> arr = [13, 10, 21, 20]
+10
+21
+20
+
+**Sample Output
+1
+
+**Explanation
+Swap *arr[0]* and *arr[3]* to get the custom-sorted array *arr`=[20, 10, 21, 13]* in 1 move.
