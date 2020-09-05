@@ -1,3 +1,8 @@
+/*
+Code based on :
+https://refactoring.guru/design-patterns/state/cpp/example
+*/
+
 #include <iostream>
 #include <typeinfo>
 
