@@ -43,11 +43,63 @@ public:
 
     void TransitionTo(State* state)
     {
-        
+        std::cout << "Context: Transition to " << typeid(*m_state).name() << ".\n";
+        if (m_state != NULL)
+        {
+            delete m_state;
+        }
+        m_state = state;
+        m_state->set_context(this);
+    }
+
+    void Request1()
+    {
+        m_state->Handle1();
+    }
+
+    void Request2()
+    {
+        m_state->Handle2();
+    }
+};
+
+// ---------------------------------------------------
+
+class ConcreteStateA : public State
+{
+public:
+    void Handle1() override;
+
+    void Handle2() override 
+    {
+        std::cout << "ConcreteStateA handles request2.\n";
+    }
+};
+
+class ConcreteStateB : public State
+{
+public:
+    void Handle1() override
+    {
+        std::cout << "ConcreteStateB handles request1.\n";
+    }
+
+    void Handle2() override 
+    {
+        std::cout << "ConcreteStateB handles request2.\n";
+        std::cout << "ConcreteStateB wants to change the state of the context.\n";
+        m_context->TransitionTo(new ConcreteStateA);
     }
 };
 
 
+
+void ConcreteStateA::Handle1()
+{
+        std::cout << "ConcreteStateA handles request1.\n";
+        std::cout << "ConcreteStateA wants to change the state of the context.\n";
+        m_context->TransitionTo(new ConcreteStateB);
+}
 
 
 int main()
