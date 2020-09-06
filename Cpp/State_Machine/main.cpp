@@ -43,7 +43,7 @@ public:
 
     void TransitionTo(State* state)
     {
-        std::cout << "Context: Transition to " << typeid(*m_state).name() << ".\n";
+        std::cout << "Context: Transition to " << typeid(*state).name() << ".\n";
         if (m_state != NULL)
         {
             delete m_state;
@@ -68,9 +68,9 @@ public:
 class ConcreteStateA : public State
 {
 public:
-    void Handle1() override;
+    void Handle1() ;
 
-    void Handle2() override 
+    void Handle2()  
     {
         std::cout << "ConcreteStateA handles request2.\n";
     }
@@ -79,12 +79,12 @@ public:
 class ConcreteStateB : public State
 {
 public:
-    void Handle1() override
+    void Handle1() 
     {
         std::cout << "ConcreteStateB handles request1.\n";
     }
 
-    void Handle2() override 
+    void Handle2()  
     {
         std::cout << "ConcreteStateB handles request2.\n";
         std::cout << "ConcreteStateB wants to change the state of the context.\n";
@@ -101,10 +101,17 @@ void ConcreteStateA::Handle1()
         m_context->TransitionTo(new ConcreteStateB);
 }
 
+void ClientCode()
+{
+    Context* context = new Context(new ConcreteStateA);
+    context->Request1();
+    context->Request2();
+    delete context;
+}
 
 int main()
 {
     std::cout <<"Hello !\n";
-
+    ClientCode();
     return 0;
 }
