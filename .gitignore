@@ -133,3 +133,6 @@ dmypy.json
 
 # IntelliJ
 .idea/
+
+# Windows
+*.exe
