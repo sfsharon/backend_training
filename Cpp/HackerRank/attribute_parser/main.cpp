@@ -34,8 +34,8 @@ The following  lines consist of either an opening tag with zero or more attribut
 
 Constraints
 
-Each line in the source program contains, at max,  characters.
-Every reference to the attributes in the  queries contains at max  characters.
+Each line in the source program contains, at max, 200 characters.
+Every reference to the attributes in the  queries contains at max 200 characters.
 All tag names are unique and the HRML source program is logically correct.
 A tag can have no attributes as well.
 Output Format
@@ -59,26 +59,47 @@ Not Found!
 HelloWorld
 
 */
+#include <string>
 #include <cmath>
 #include <cstdio>
 #include <vector>
 #include <iostream>
 #include <algorithm>
 
-// Used for readinע files
-#include <fstream>
+
 
 using namespace std;
 
 
 int main() {
-    // Input file stream object
-    ifstream myfile;
-    myfile.open("input.txt");
+/*
+ 8/9/2020, 0200 AM
+ TODO - The idea is to parse the HRML lines to an STL map.
+        Each line (which is not a closing tag, e.g. "</tag5>") will be added to the map.
+        The key will be the accumulated tag name, meaning that if "tag5" parents in the 
+        tree hierarchy are atg1 and tag2, then the key in the map will be "tag1.tag2.tag5".
+        Each time that a closing tag name is encountered, its value will be erased from the 
+        name key aggregation. 
+        The values can be (empty) list of attributes, that are an STL pair of
+        name string and name value.
+        The query will just do a search on the key, and then a search on the list of pair strings. 
+*/    
 
     int HRML_lines = 0;
     int query_lines = 0;
     cin >> HRML_lines >> query_lines;
-    cout << "Got : " << HRML_lines << "  " << query_lines;
+    cout << "Got " << HRML_lines << " HRML Lines, and " << query_lines << " Queries\n";
+
+    std::vector<std::string> vecOfStrs(HRML_lines + query_lines);    
+
+    std::string str;
+    for (int i = 0; i < (HRML_lines + query_lines) ; i++)
+    {
+        std::getline(cin, str);
+        if (str.size() > 0) 
+        {
+            vecOfStrs[i] = str;
+        }
+    }
     return 0;
 }
