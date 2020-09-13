@@ -66,10 +66,25 @@ HelloWorld
 #include <iostream>
 #include <algorithm>
 
-
+#include <sstream>
 
 using namespace std;
 
+void tokenizeLine (const string& inStr,    /* Input */
+                   vector<string>& tokens /* Output */) 
+{
+    /*
+        Tokenize a single line according to white space, ' '
+        Based on code from : https://www.geeksforgeeks.org/tokenizing-a-string-cpp/
+    */
+    stringstream inStream(inStr);
+    string tempStr;
+
+    while (getline(inStr, tempStr, ' ' ))
+    {
+        tokens.push_back(tempStr);
+    }    
+}
 
 int main() {
 /*
@@ -90,16 +105,29 @@ int main() {
     cin >> HRML_lines >> query_lines;
     cout << "Got " << HRML_lines << " HRML Lines, and " << query_lines << " Queries\n";
 
-    std::vector<std::string> vecOfStrs(HRML_lines + query_lines);    
+    vector<string> vecOfStrs(HRML_lines + query_lines);    
 
-    std::string str;
+    // Input lines into a vector of strings
+    string str;
     for (int i = 0; i < (HRML_lines + query_lines) ; i++)
     {
-        std::getline(cin, str);
+        getline(cin, str);
         if (str.size() > 0) 
         {
             vecOfStrs[i] = str;
         }
     }
+
+    // Tokenize each line
+    for (vector<string>::iterator it = vecOfStrs.begin(); 
+         it != vecOfStrs.end(); 
+         ++it) 
+         {
+             vector<str> myTokens;
+             tokenizeLine(*it, myTokens);
+         }
+         
+
+
     return 0;
 }
